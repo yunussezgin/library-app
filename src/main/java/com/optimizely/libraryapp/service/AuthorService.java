@@ -6,6 +6,6 @@ import com.optimizely.libraryapp.model.Author;
 
 public interface AuthorService {
 	
-	List<Author> readDataFromFile();
+	List<Author> getAllAuthors();
 
 }

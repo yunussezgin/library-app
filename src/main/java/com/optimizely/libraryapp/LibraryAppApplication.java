@@ -20,19 +20,19 @@ public class LibraryAppApplication {
 		ApplicationContext applicationContext = SpringApplication.run(LibraryAppApplication.class, args);
 
 		AuthorService authorService = applicationContext.getBean(AuthorService.class);
-		List<Author> authorList = authorService.readDataFromFile();
+		List<Author> authorList = authorService.getAllAuthors();
 
 		for (Author author : authorList)
 			System.out.println(author.toString());
 
 		BookService bookService = applicationContext.getBean(BookService.class);
-		List<Book> bookList = bookService.readDataFromFile();
+		List<Book> bookList = bookService.getAllBooks();
 
 		for (Book book : bookList)
 			System.out.println(book.toString());
 
 		MagazineService magazineService = applicationContext.getBean(MagazineService.class);
-		List<Magazine> magazineList = magazineService.readDataFromFile();
+		List<Magazine> magazineList = magazineService.getAllMagazines();
 
 		for (Magazine magazine : magazineList)
 			System.out.println(magazine.toString());

@@ -6,6 +6,6 @@ import com.optimizely.libraryapp.model.Magazine;
 
 public interface MagazineService {
 	
-	List<Magazine> readDataFromFile();
+	List<Magazine> getAllMagazines();
 
 }

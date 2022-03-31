@@ -17,11 +17,11 @@ import com.optimizely.libraryapp.model.Magazine;
 import com.optimizely.libraryapp.util.CommonUtils;
 
 @Component
-public class MagazineParser {
+public class MagazineDataParser {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(MagazineParser.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(MagazineDataParser.class);
 
-	public List<Magazine> parse(String fileName) {
+	public List<Magazine> parseDataFromFile(String fileName) {
 		List<Magazine> magazineList = new ArrayList<>();
 		File file = Paths.get("src", "main", "resources", "data", fileName).toFile();
 

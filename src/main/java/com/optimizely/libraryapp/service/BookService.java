@@ -6,6 +6,6 @@ import com.optimizely.libraryapp.model.Book;
 
 public interface BookService {
 
-	List<Book> readDataFromFile();
+	List<Book> getAllBooks();
 	
 }

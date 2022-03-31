@@ -17,11 +17,11 @@ import com.optimizely.libraryapp.model.Book;
 import com.optimizely.libraryapp.util.CommonUtils;
 
 @Component
-public class BookParser {
+public class BookDataParser {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorParser.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorDataParser.class);
 
-	public List<Book> parse(String fileName) {
+	public List<Book> parseDataFromFile(String fileName) {
 		List<Book> bookList = new ArrayList<>();
 		File file = Paths.get("src", "main", "resources", "data", fileName).toFile();
 
