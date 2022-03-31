@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import com.opencsv.CSVReader;
@@ -21,6 +22,7 @@ public class BookDataParser {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorDataParser.class);
 
+	@Cacheable(value = "book")
 	public List<Book> parseDataFromFile(String fileName) {
 		List<Book> bookList = new ArrayList<>();
 		File file = Paths.get("src", "main", "resources", "data", fileName).toFile();

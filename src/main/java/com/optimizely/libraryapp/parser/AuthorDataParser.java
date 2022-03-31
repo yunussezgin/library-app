@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import com.opencsv.CSVReader;
@@ -17,17 +18,18 @@ import com.optimizely.libraryapp.util.CommonUtils;
 
 @Component
 public class AuthorDataParser {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorDataParser.class);
 
+	@Cacheable(value = "author")
 	public List<Author> parseDataFromFile(String fileName) {
 		List<Author> authorList = new ArrayList<>();
 		File file = Paths.get("src", "main", "resources", "data", fileName).toFile();
 
 		try (CSVReader csvReader = new CSVReader(new FileReader(file))) {
 			String[] values = csvReader.readNext();
-			
-			while((values = csvReader.readNext()) != null) {
+
+			while ((values = csvReader.readNext()) != null) {
 				String[] fields = String.join(StringUtils.EMPTY, values).split(";");
 				Author author = new Author();
 				author.setEmailAddress(CommonUtils.getArrayValueWithDefault(fields, 0, StringUtils.EMPTY));
@@ -35,11 +37,11 @@ public class AuthorDataParser {
 				author.setLastName(CommonUtils.getArrayValueWithDefault(fields, 2, StringUtils.EMPTY));
 				authorList.add(author);
 			}
-			
+
 		} catch (Exception ex) {
 			LOGGER.error("AuthorParser.parse exception occured! message:{}", ex.getMessage(), ex);
 		}
-	
+
 		return authorList;
 	}
 
