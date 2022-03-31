@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.optimizely.libraryapp.model.Book;
 import com.optimizely.libraryapp.model.Magazine;
 import com.optimizely.libraryapp.parser.MagazineDataParser;
 import com.optimizely.libraryapp.service.MagazineService;

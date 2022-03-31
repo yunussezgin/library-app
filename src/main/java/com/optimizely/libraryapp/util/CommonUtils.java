@@ -1,5 +1,11 @@
 package com.optimizely.libraryapp.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,10 +31,25 @@ public class CommonUtils {
 		try {
 			date = new SimpleDateFormat(Constants.DATE_FORMAT).parse(strDate);
 		} catch (ParseException e) {
-			LOGGER.error("CommonUtils.parseDateFromString exception occured! message:{} date:{}", e.getMessage(), strDate, e);
+			LOGGER.error("CommonUtils.parseDateFromString exception occured! message:{} date:{}", e.getMessage(),
+					strDate, e);
 		}
 
 		return date;
+	}
+
+	public static InputStreamReader prepareFileReader(String fileName) {
+		File file = Paths.get("src", "main", "resources", "data", fileName).toFile();
+		InputStreamReader reader = null;
+
+		try {
+			FileInputStream stream = new FileInputStream(file);
+			reader = new InputStreamReader(stream, StandardCharsets.UTF_8);
+		} catch (FileNotFoundException e) {
+			LOGGER.error("CommonUtils.prepareFileReader exception occured! message:{}", e.getMessage(), e);
+		}
+
+		return reader;
 	}
 
 }

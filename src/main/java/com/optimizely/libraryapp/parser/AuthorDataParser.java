@@ -1,8 +1,6 @@
 package com.optimizely.libraryapp.parser;
 
-import java.io.File;
-import java.io.FileReader;
-import java.nio.file.Paths;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +22,9 @@ public class AuthorDataParser {
 	@Cacheable(value = "author")
 	public List<Author> parseDataFromFile(String fileName) {
 		List<Author> authorList = new ArrayList<>();
-		File file = Paths.get("src", "main", "resources", "data", fileName).toFile();
+		InputStreamReader streamReader = CommonUtils.prepareFileReader(fileName);
 
-		try (CSVReader csvReader = new CSVReader(new FileReader(file))) {
+		try (CSVReader csvReader = new CSVReader(streamReader)) {
 			String[] values = csvReader.readNext();
 
 			while ((values = csvReader.readNext()) != null) {
