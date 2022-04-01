@@ -9,7 +9,7 @@ Library App to manage your books and magazines
 
 
 ## Run the below commands at the root of the project directory
-Build Recipe API using maven.
+Build the project using maven.
 ```
 mvn clean install
 ```
