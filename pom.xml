@@ -13,7 +13,7 @@
 	<artifactId>library-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>library-app</name>
-	<description>Optimizely Code Challenge</description>
+	<description>Optimizely Code Challenge - yunus_sezgin</description>
 	<properties>
 		<java.version>8</java.version>
 	</properties>
