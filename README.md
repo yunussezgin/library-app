@@ -2,14 +2,14 @@
 Library App to manage your books and magazines
 
 
-### Required tools to run the API
-- JDK 8
+## Tech Stack
+- Java 8
 - Maven
-- Eclipse or IntelliJ Idea
+- Spring Boot 2.6.5
 
 
-## Run the below commands at the root of the project directory
-Build the project using maven.
+## How to start the project ?
+Run the below commands at the root of the project directory.
 ```
 mvn clean install
 ```
