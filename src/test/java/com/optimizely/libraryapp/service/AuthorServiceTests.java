@@ -1,5 +1,8 @@
 package com.optimizely.libraryapp.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,13 +19,6 @@ import com.optimizely.libraryapp.parser.AuthorDataParser;
 import com.optimizely.libraryapp.service.impl.AuthorServiceImpl;
 import com.optimizely.libraryapp.util.Constants;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 @ExtendWith(MockitoExtension.class)
 public class AuthorServiceTests {
 
@@ -32,33 +28,36 @@ public class AuthorServiceTests {
 	@InjectMocks
 	private AuthorServiceImpl authorService;
 
-	Author author = null;
-	List<Author> authorList = null;
+	Author authorMock = null;
+	List<Author> authorListMock = null;
 
 	@BeforeEach
 	public void setup() {
-		authorList = new ArrayList<>();
-		author = new Author();
-		author.setEmailAddress("pr-walter@optivo.de");
-		author.setFirstName("Paul");
-		author.setLastName("Walter");
-		authorList.add(author);
-		author = new Author();
-		author.setEmailAddress("pr-ferdinand@optivo.de");
-		author.setFirstName("Franz");
-		author.setLastName("Ferdinand");
-		authorList.add(author);
-		author = new Author();
-		author.setEmailAddress("pr-lieblich@optivo.de");
-		author.setFirstName("Werner");
-		author.setLastName("Lieblich");
-		authorList.add(author);
+		authorListMock = new ArrayList<>();
+		// 1. AUTHOR
+		authorMock = new Author();
+		authorMock.setEmailAddress("pr-walter@optivo.de");
+		authorMock.setFirstName("Paul");
+		authorMock.setLastName("Walter");
+		authorListMock.add(authorMock);
+		// 2. AUTHOR
+		authorMock = new Author();
+		authorMock.setEmailAddress("pr-ferdinand@optivo.de");
+		authorMock.setFirstName("Franz");
+		authorMock.setLastName("Ferdinand");
+		authorListMock.add(authorMock);
+		// 3. AUTHOR
+		authorMock = new Author();
+		authorMock.setEmailAddress("pr-lieblich@optivo.de");
+		authorMock.setFirstName("Werner");
+		authorMock.setLastName("Lieblich");
+		authorListMock.add(authorMock);
 	}
 
 	@Test
 	public void givenAuthorList_whenGetAllAuthors_thenReturnAuthorList() {
 		// given
-		given(authorDataParser.parseDataFromFile(Constants.AUTHOR_FILE_NAME)).willReturn(authorList);
+		given(authorDataParser.parseDataFromFile(Constants.AUTHOR_FILE_NAME)).willReturn(authorListMock);
 
 		// when
 		List<Author> authorList = authorService.getAllAuthors();

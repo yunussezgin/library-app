@@ -22,7 +22,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> getAllBooks() {
-		List<Book> bookList = bookDataParser.parseDataFromFile(Constants.BOOKE_FILE_NAME);
+		List<Book> bookList = bookDataParser.parseDataFromFile(Constants.BOOK_FILE_NAME);
 		return bookList;
 	}
 
@@ -41,8 +41,8 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<Book> getBooksByTitle(String title) {
 		List<Book> bookList = getAllBooks();
-		return bookList.stream().filter(b -> b.getTitle().contains(title)).sorted(Comparator.comparing(Book::getTitle))
-				.collect(Collectors.toList());
+		return bookList.stream().filter(b -> b.getTitle().toUpperCase().contains(title.toUpperCase()))
+				.sorted(Comparator.comparing(Book::getTitle)).collect(Collectors.toList());
 	}
 
 }

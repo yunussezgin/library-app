@@ -41,7 +41,7 @@ public class MagazineServiceImpl implements MagazineService {
 	@Override
 	public List<Magazine> getMagazinesByTitle(String title) {
 		List<Magazine> magazineList = getAllMagazines();
-		return magazineList.stream().filter(m -> m.getTitle().contains(title))
+		return magazineList.stream().filter(m -> m.getTitle().toUpperCase().contains(title.toUpperCase()))
 				.sorted(Comparator.comparing(Magazine::getTitle)).collect(Collectors.toList());
 	}
 
